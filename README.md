@@ -18,22 +18,22 @@ This repository contains the code that ran the user study described in HRI19's *
 1. Debug why it isn't running :p
 
 ### Notes on Replication
-The code would require some effort to run on a different system. However, you can review the interaction flow in [res](hri19_multirobot_transition_study_baxter/res/) folder. Each conditions has it's on script file in the format `condition-stationary_robot_behavior-information_transfer.yaml`, where `stationary_robot_behavior` and `information_transfer` are the conditions described in the paper (Note `i` means `direct`, we called it `inter robot communication` when the code was written).
+The code would require some effort to run on a different system. However, you can review the interaction flow in the [res](hri19_multirobot_transition_study_baxter/res/) folder. Each conditions has its own script file in the format `condition-stationary_robot_behavior-information_transfer.yaml`, where `stationary_robot_behavior` and `information_transfer` are the conditions described in the paper (Note `i` means `direct`, we called it `inter robot communication` when the code was written).
 
-The flow of the interaction starts with [initial_base_interaction.yaml](hri19_multirobot_transition_study_baxter/hri19_/res/initial_base_interaction.yaml) that ask participant their destination and walking speed. This file is called from every condition. The interaction then follows the dialog listed in their respective condition files.
+The interaction starts with [initial_base_interaction.yaml](hri19_multirobot_transition_study_baxter/hri19_/res/initial_base_interaction.yaml) that ask the participant their destination and walking speed. This interaction is first  called from every condition file. The interaction then follows the dialog listed in their respective condition file.
 
-The interaction files should give a complete picture of the robot's behavior during the study.
+The interaction files should give a complete picture of the stationary robot's behavior during the study.
 
 ### Notes on Code
 The code uses an old version of our baxter scripting language. The scripting language used is **NO LONGER** the same used in our future work.
 
 ## Podi External Git Dependencies
-* multibot_relay
+* [multibot_relay](https://github.com/CMU-ARM/multi_robot_relay)
 
 ## Baxter External Git Dependencies
 Some of the dependencies might have been abandoned or discontinued since 2018.
 * [lab_polly_speech](https://github.com/CMU-ARM/lab_ros_common)
 * [lab_baxter_common](https://github.com/CMU-ARM/lab_baxter_common)
 * [lab_ros_speech_to_text](https://github.com/CMU-ARM/lab_ros_speech_to_text)
-* multibot_relay
+* [multibot_relay](https://github.com/CMU-ARM/multi_robot_relay)
 * [snips_nlu_ros](https://github.com/CMU-ARM/snips_nlu_ros)
