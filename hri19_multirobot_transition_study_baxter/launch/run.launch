@@ -1,0 +1,18 @@
+
+<launch>
+
+    <arg name='interpretor_filepath' default='default.yaml'/>
+    <param name='interpretor_filepath' value="$(arg interpretor_filepath)" type="string" />
+
+    <arg name='participant_name'/>
+    <param name='participant_name' value="$(arg participant_name)" type="string" />
+
+    <arg name='participant_id'/>
+    <param name='participant_id' value="$(arg participant_id)" type="string" />
+
+
+    <node pkg="hri19_multirobot_transition_study" name="study_runner" type="run.py" output="screen">
+    </node>
+
+</launch>  
+  

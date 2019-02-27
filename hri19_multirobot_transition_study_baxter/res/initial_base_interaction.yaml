@@ -1,0 +1,90 @@
+actions:
+  - op: "run_file"
+    param:
+      filename: 'initial_position.yaml'
+      carry_mem: True 
+  - op: "wait_response"
+    param:
+      timeout: 0
+  - op: "speak"
+    param:
+      text: "Welcome to {0}."
+      format:
+        - input_key: 'location'
+  - op: "speak"
+    param:
+      text: "For security purposes, can you provide me with your first name?"
+  - op: "wait_response"
+    param:
+      timeout: 0
+  - op: "load_param"
+    param:
+      rosparam_key: "participant_name"
+      mem_key: "provided_name"
+  - op: "speak"
+    param:
+      text: "Hi {}."
+      format:
+        - input_key: 'provided_name'
+  - op: "speak"
+    param:
+      text: "What kind of assistance do you require today?"
+  - op: "natural_language_understanding"
+    fail:
+      goto: 7
+    param:
+      NLU_type: 'directions' 
+      output_keys:
+        - 'room'
+      timeout: 10
+  - op: "speak"
+    param:
+      text: "You want to go to {0}?"
+      format:
+        - input_key: 'room'
+  - op: "yes_no_question"
+    param:
+      timeout: 10
+      true_action: 'pass'
+      false_action: 7
+    fail:
+      goto: 9
+  - op: "speak"
+    param:
+      text: "Okay."
+  - op: "speak"
+    param:
+      text: "Do you prefer to walk quickly or slowly?"
+  - op: "choice_question"
+    fail:
+      goto: 12
+    param:
+      options:
+        - key: 'quickly'
+          alternatives:
+            - 'fast'
+        - key: 'slowly'
+          alternatives:
+            - 'slow'
+      output_key: 'move_speed'
+      timeout: 10
+  - op: "speak"
+    param:
+      text: "Okay, {} it is."
+      format:
+        - input_key: 'move_speed'
+  - op: 'signal_robot'
+    param:
+      signal: 'move-next-to-robot'
+  - op: "speak"
+    param:
+      text: "Let me call {} to guide you there."
+      format:
+        - input_key: 'robot_name'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: "wait"
+    param:
+      time: 0.5

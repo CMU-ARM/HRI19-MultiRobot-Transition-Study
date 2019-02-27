@@ -1,0 +1,18 @@
+actions:
+  - op: 'signal_robot'
+    param:
+      signal: 'move-next-to-robot'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: "wait"
+    param:
+      time: 5
+  - op: 'signal_robot'
+    param:
+      signal: 'move-to-hidden'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'

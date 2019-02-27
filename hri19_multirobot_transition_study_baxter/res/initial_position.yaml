@@ -1,0 +1,16 @@
+actions:
+  - op: 'move_to_posture'
+    param:
+      posture: 'neutral'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: 'change_face'
+    param:
+      face_type: 'happy'
+  - op: 'move_head'
+    param:
+      angle: -0.15
+      block: false
+      speed: 0.75 #0-1

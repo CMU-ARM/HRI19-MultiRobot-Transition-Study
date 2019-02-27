@@ -1,0 +1,9 @@
+actions:
+  - op: 'move_head'
+    param:
+      angle: -0.15
+      block: false
+      speed: 0.75 #0-1
+  - op: 'move_to_posture'
+    param:
+      posture: 'neutral'

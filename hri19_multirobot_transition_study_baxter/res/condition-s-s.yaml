@@ -1,0 +1,61 @@
+memory:
+  robot_name: "Blue Robot"
+  provided_name: "Jim"
+  move_speed: "slow"
+  room: "New York Room"
+  location: "Goliath National Bank"
+actions:
+  - op: "run_file"
+    param:
+      filename: 'initial_base_interaction.yaml'
+      carry_mem: True
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi' 
+  - op: "run_file"
+    param:
+      filename: 'face_robot.yaml'
+      carry_mem: True
+  - op: "speak"
+    param:
+      text: "Hi {0}. Can you please lead {1} to the destination?"
+      format:
+        - input_key: 'robot_name'
+        - input_key: 'provided_name'
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: "speak"
+    param:
+      text: "Thank you {0}."
+      format:
+        - input_key: 'robot_name'
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: "run_file"
+    param:
+      filename: 'face_participant.yaml'
+      carry_mem: True
+  - op: "speak"
+    param:
+      text: "{0} will lead you there. Please follow {0}."
+      format:
+        - input_key: 'robot_name'
+  - op: "run_file"
+    param:
+      filename: 'end.yaml'
+      carry_mem: True
+  - op: "end"

@@ -1,0 +1,17 @@
+actions:
+  - op: 'signal_robot'
+    param:
+      signal: 'move-to-dest'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: "wait"
+    param:
+      time: 5
+  - op: 'change_face'
+    param:
+      face_type: 'blank'
+  - op: 'signal_robot'
+    param:
+      signal: 'move-to-hidden' #The robot will now move back to the hiding place after each interactions

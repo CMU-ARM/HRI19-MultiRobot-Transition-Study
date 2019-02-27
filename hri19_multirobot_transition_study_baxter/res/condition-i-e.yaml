@@ -1,0 +1,59 @@
+memory:
+  robot_name: "Yellow Robot"
+  provided_name: "Jim"
+  move_speed: "slow"
+  room: "New York Room"
+  location: "Echo Credit Union"
+actions:
+  - op: "run_file"
+    param:
+      filename: 'initial_base_interaction.yaml'
+      carry_mem: True
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi' 
+  - op: "run_file"
+    param:
+      filename: 'face_robot.yaml'
+      carry_mem: True
+  - op: "speak"
+    param:
+      text: "{0}, lead {1} to the destination."
+      format:
+        - input_key: 'robot_name'
+        - input_key: 'provided_name'
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi' 
+  - op: "speak"
+    param:
+      text: "I have transmitted to you the destination and preferred walking speed."  
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'         
+  - op: "run_file"
+    param:
+      filename: 'face_participant.yaml'
+      carry_mem: True
+  - op: "speak"
+    param:
+      text: "{0} knows where you are going and will lead you there. Please follow {0}."
+      format:
+        - input_key: 'robot_name'
+  - op: "run_file"
+    param:
+      filename: 'end.yaml'
+      carry_mem: True
+  - op: "end"

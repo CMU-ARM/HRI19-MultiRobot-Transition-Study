@@ -1,0 +1,52 @@
+actions:
+  - op: "run_file"
+    param:
+      filename: 'initial_position.yaml'
+      carry_mem: True 
+  - op: "wait_response"
+    param:
+      timeout: 0
+  - op: "speak"
+    param:
+      text: "Hi. Welcome to the traveling with robots study."
+  - op: "speak"
+    param:
+      text: "I am going to call a guide robot to lead you into the hallway."
+  - op: "speak"
+    param:
+      text: "Are you ready?"
+  - op: "yes_no_question"
+    param:
+      timeout: 10
+      true_action: 'pass'
+      false_action: 1
+    fail:
+      goto: 4
+  - op: 'signal_robot'
+    param:
+      signal: 'move-next-to-robot'
+  - op: "speak"
+    param:
+      text: "Please wait here."
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: "wait"
+    param:
+      time: 0.5
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'   
+  - op: "speak"
+    param:
+      text: "Please follow the guide robot."
+  - op: "run_file"
+    param:
+      filename: 'end.yaml'
+      carry_mem: True
+  - op: "end"

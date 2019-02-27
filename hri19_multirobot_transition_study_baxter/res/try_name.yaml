@@ -1,0 +1,15 @@
+actions:
+  - op: "speak"
+    param:
+      text: "Sorry, I was unable to catch your name. Can you speak out loud your first name?"
+  - op: "natural_language_understanding"
+    fail:
+      run_file:
+        param:
+          filename: 'load_name.yaml'
+          carry_mem: True       
+    param:
+      NLU_type: 'name' 
+      output_keys:
+        - 'provided_name' 
+      timeout: 10

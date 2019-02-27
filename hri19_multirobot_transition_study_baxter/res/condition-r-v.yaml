@@ -1,0 +1,46 @@
+memory:
+  robot_name: "Green Robot"
+  provided_name: "Jim"
+  move_speed: "slow"
+  room: "New York Room"
+  location: "Hugo National Bank"
+actions:
+  - op: "run_file"
+    param:
+      filename: 'initial_base_interaction.yaml'
+      carry_mem: True
+  - op: 'signal_robot'
+    param:
+      signal: 'beep'
+  - op: 'wait_for_signal'
+    param:
+      signal: 'done'
+      robot_id: 'podi'
+  - op: "wait"
+    param:
+      time: 1
+  - op: "speak"
+    param:
+      text: "I am now telling {0} that you would like to walk {1} and you want to go to {2}."
+      format:
+        - input_key: 'robot_name'
+        - input_key: 'room'
+        - input_key: 'move_speed'
+  - op: "wait"
+    param:
+      time: 2      
+  - op: "run_file"
+    param:
+      filename: 'face_participant.yaml'
+      carry_mem: True
+  - op: "speak"
+    param:
+      text: "{0} will lead you to {1}. Please follow {0}"
+      format:
+        - input_key: 'robot_name'
+        - input_key: 'room'
+  - op: "run_file"
+    param:
+      filename: 'end.yaml'
+      carry_mem: True
+  - op: "end"

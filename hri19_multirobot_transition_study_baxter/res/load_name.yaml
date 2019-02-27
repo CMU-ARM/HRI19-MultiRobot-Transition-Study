@@ -1,0 +1,5 @@
+actions:
+  - op: "load_param"
+    param:
+      rosparam_key: "participant_name"
+      mem_key: "provided_name"

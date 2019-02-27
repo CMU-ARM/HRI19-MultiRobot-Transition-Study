@@ -1,0 +1,27 @@
+<launch>
+
+    <arg name='interpretor_filepath' default='default.yaml'/>
+    <param name='interpretor_filepath' value="$(arg interpretor_filepath)" type="string" />
+
+    <env name="ROSCONSOLE_CONFIG_FILE" value="$(find hri19_multirobot_transition_study)/res/rosconsole.config"/>
+    <env name="ROSCONSOLE_FORMAT" value="[${severity}][${node}][${time}]: ${message}" />
+
+	<!-- safety node -->
+	<!-- <node name="safety_node" pkg="lab_baxter_safety" type="safety.py" output="screen" /> -->
+    <!-- call the speech launch file -->
+	<include file="$(find lab_polly_speech)/launch/polly_speech.launch" />
+    <!-- IK Service -->
+	<include file="$(find trac_ik_baxter)/launch/ik_server.launch" />
+    <!-- call the face launch file -->
+    <include file="$(find baxter_head_toolkit)/launch/face_emotion.launch" />
+    <include file="$(find baxter_general_toolkit)/launch/playback.launch" />
+    <!-- TTS and NLU -->
+    <include file="$(find lab_ros_speech_to_text)/launch/google_stt.launch" />
+    <include file="$(find snips_nlu_ros)/launch/start.launch"/>   
+
+
+    <include file="$(find multi_robot_relay)/launch/start_relay.launch">
+        <arg name='robot_id' value='baxter'/>
+        <arg name='hostname' value='192.168.0.153' />
+    </include>
+</launch>

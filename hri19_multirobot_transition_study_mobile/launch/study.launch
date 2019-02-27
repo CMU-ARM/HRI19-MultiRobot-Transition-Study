@@ -1,0 +1,9 @@
+<launch>
+    <include file="$(find podi_2dnav)/launch/base.launch" />
+    <include file="$(find sound_play)/soundplay_node.launch" />
+    <include file="$(find multi_robot_relay)/launch/start_relay.launch" />
+
+     <node pkg="rosbag" type="record" name="rosbag_record_tf"
+       args="record -o /home/lab/bags/userstudy /tf /rosout /tf_static"/>
+
+</launch>
